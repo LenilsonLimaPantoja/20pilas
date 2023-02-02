@@ -23,56 +23,83 @@
       if (tipo.value === "") return alert("Preencha o tipo do produto");
 
       cor = document.querySelector("#cor");
-      var existeCor = arrayCor.filter((item) => item.cor === cor.value);
+      var existeCor = arrayCor.filter((item) => item.cor === cor.value && item.nome === nome.value && item.tipo === tipo.value);
       if (existeCor.length > 0)
         return alert(
           "Cor (" +
             cor.value +
             ") já adicionada, escolha outra cor e tente novamente"
         );
-      arrayCor.push({ cor: cor.value });
+      arrayCor.push({
+        cor: cor.value,
+        nome: nome.value,
+        estoque: estoque.value,
+        tipo: tipo.value,
+      });
       var novoArray = arrayCor.map((item, index) => {
         return (
-          "<li style=' border: solid; border-width: 5px; border-color: " +
+          "<tr>" +
+          "<td>" +
+          item.nome +
+          "</td>" +
+          "<td>" +
+          item.estoque +
+          "</td>" +
+          "<td>" +
+          item.tipo +
+          "</td>" +
+          "<td style='background-color:" +
           item.cor +
-          "; border-radius: 5px; color: #174c4f; list-style: none; margin-top: 10px; min-height: 50px; padding: 5px; flex-grow: 1; display: flex; justify-content: center; align-items: center; min-width: 100px; text-transform: uppercase; text-align: center;'>Item " +
-          parseInt(index + 1) +
-          " - tipo: " +
-          tipo.value +
-          " - descrição: " +
-          nome.value +
-          " - estoque: " +
-          estoque.value +
-          "</li>"
+          "; color: #fff;'>" +
+          item.cor +
+          "</td>" +
+          "</tr>"
         );
       });
       wr.innerHTML = novoArray.join("");
     }
+
+    const handleSalvar = () => {
+      console.log(arrayCor);
+    };
   </script>
   <body>
-    <div class="container">
-      <label for="nome" class="label-input">
-        <span>Nome do produto</span>
-        <input type="text" name="nome" id="nome" />
-      </label>
-      <label for="estoque" class="label-input">
-        <span>Estoque</span>
-        <input type="number" name="estoque" id="estoque" />
-      </label>
-      <label for="tipo" class="label-input">
-        <select id="tipo">
-          <option value="Camiseta">Camiseta</option>
-          <option value="Bermuda">Bermuda</option>
-          <option value="Jaqueta">Jaqueta</option>
-        </select>
-      </label>
-      <label class="cor" for="cor">
-        <span>variação de cor</span>
-        <input type="color" style="display: none" name="cor" id="cor" />
-        <button onclick="nameS()" class="btn-add-cor">adicionar</button>
-      </label>
-      <ul class="conteudo-cores" style="flex-wrap: wrap; width: 100%"></ul>
-      <button class="salvar">salvar</button>
+    <div class="body">
+      <div class="container">
+        <h2>Cadastro de Produtos</h2>
+        <label for="nome" class="label-input">
+          <span>Nome do produto</span>
+          <input type="text" name="nome" id="nome" />
+        </label>
+        <label for="estoque" class="label-input">
+          <span>Estoque</span>
+          <input type="number" name="estoque" id="estoque" />
+        </label>
+        <label for="tipo" class="label-input">
+          <select id="tipo">
+            <option value="Camiseta">Camiseta</option>
+            <option value="Bermuda">Bermuda</option>
+            <option value="Jaqueta">Jaqueta</option>
+          </select>
+        </label>
+        <label class="cor" for="cor">
+          <span>variação de cor</span>
+          <input type="color" style="display: none" name="cor" id="cor" />
+          <button onclick="nameS()" class="btn-add-cor">adicionar</button>
+        </label>
+        <table>
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Estoque</th>
+              <th>Tipo</th>
+              <th>Cor</th>
+            </tr>
+          </thead>
+          <tbody class="conteudo-cores"></tbody>
+        </table>
+        <button onclick="handleSalvar()" class="salvar">salvar</button>
+      </div>
     </div>
   </body>
 </html>

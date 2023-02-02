@@ -5,16 +5,26 @@
     box-sizing: border-box;
 }
 
+.body {
+    display: flex;
+    justify-content: center;
+}
+
 .container {
     width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
     padding: 10px;
     max-width: 100vw;
+    margin-top: 5%;
+}
+
+h2 {
+    background-color: #e8f0fe;
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    color: #174c4f;
+    border: solid 1px #ccc;
 }
 
 .label-input {
@@ -37,9 +47,10 @@ input, select {
     background-color: #e8f0fe;
 }
 
-input:focus , select:focus{
+input:focus, select:focus {
     outline: none;
 }
+
 select {
     height: 50px;
     cursor: pointer;
@@ -78,10 +89,12 @@ span {
     border-bottom-left-radius: 0px;
     cursor: pointer;
 }
+
 .btn-add-cor:hover {
     background-color: rgb(33, 102, 5);
 }
-.salvar{
+
+.salvar {
     width: 100%;
     background-color: rgb(38, 117, 6);
     color: #fff;
@@ -91,7 +104,74 @@ span {
     border: none;
     cursor: pointer;
     margin-top: 10px;
+    margin-bottom: 10px;
 }
-.salvar:hover{
+
+.salvar:hover {
     background-color: rgb(33, 102, 5);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    height: auto;
+}
+
+thead {
+    background-color: #e8f0fe;
+    border: solid 1px #ccc;
+}
+
+tr {
+    text-transform: uppercase;
+    height: 50px;
+    text-align: center;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #e8f0fe;
+}
+
+tbody {
+    border: solid 1px #ccc;
+}
+
+@media screen and (max-width: 1300px) {
+    thead {
+        display: none;
+    }
+
+    tbody {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        border-style: none;
+    }
+
+    tbody tr {
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        border: solid 1px #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        box-shadow: 0px 0px 5px 0px #ccc;
+    }
+
+    td {
+        padding: 10px;
+    }
+}
+
+@media screen and (min-width: 1300px) {
+    .container {
+        width: 80%;
+    }
+}
+
+@media screen and (min-width: 1900px) {
+    .container {
+        width: 60%;
+    }
 }
