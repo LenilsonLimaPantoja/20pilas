@@ -13,8 +13,12 @@
 
     function handleItem() {
       var wr = document.querySelector(".conteudo-cores");
+
       var nome = document.querySelector("#nome");
       if (nome.value === "") return alert("Preencha o nome do produto");
+
+      var tamanho = document.querySelector("#tamanho");
+      if (tamanho.value === "") return alert("Preencha o tamanho do produto");
 
       var estoque = document.querySelector("#estoque");
       if (estoque.value === "") return alert("Preencha o estoque do produto");
@@ -40,6 +44,7 @@
         nome: nome.value,
         estoque: estoque.value,
         tipo: tipo.value,
+        tamanho: tamanho.value,
         id: new Date().getTime(),
       });
       var novoArray = arrayItem.map((item, index) => {
@@ -47,6 +52,9 @@
           "<tr>" +
           "<td>" +
           item.nome +
+          "</td>" +
+          "<td>" +
+          item.tamanho +
           "</td>" +
           "<td>" +
           item.estoque +
@@ -71,6 +79,7 @@
       nome.value = "";
       estoque.value = "";
       cor.value = "";
+      tamanho.value = "";
     }
 
     const handleSalvar = () => {
@@ -90,6 +99,9 @@
           "<tr>" +
           "<td>" +
           item.nome +
+          "</td>" +
+          "<td>" +
+          item.tamanho +
           "</td>" +
           "<td>" +
           item.estoque +
@@ -121,6 +133,10 @@
           <span>Nome do produto</span>
           <input type="text" name="nome" id="nome" />
         </label>
+        <label for="tamanho" class="label-input">
+          <span>Tamanho</span>
+          <input type="text" name="tamanho" id="tamanho" />
+        </label>
         <label for="estoque" class="label-input">
           <span>Estoque</span>
           <input type="number" name="estoque" id="estoque" />
@@ -141,6 +157,7 @@
           <thead>
             <tr>
               <th>Nome</th>
+              <th>Tamanho</th>
               <th>Estoque</th>
               <th>Tipo</th>
               <th>Cor</th>
