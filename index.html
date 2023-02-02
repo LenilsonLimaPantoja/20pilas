@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css" />
+    <title>Cadastro de produtos</title>
+  </head>
+  <script>
+    var cor = "";
+    var arrayCor = [];
+
+    function nameS(e) {
+      var wr = document.querySelector(".conteudo-cores");
+      var nome = document.querySelector("#nome");
+      if (nome.value === "") return alert("Preencha o nome do produto");
+
+      var estoque = document.querySelector("#estoque");
+      if (estoque.value === "") return alert("Preencha o estoque do produto");
+
+      var tipo = document.querySelector("#tipo");
+      if (tipo.value === "") return alert("Preencha o tipo do produto");
+
+      cor = document.querySelector("#cor");
+      var existeCor = arrayCor.filter((item) => item.cor === cor.value);
+      if (existeCor.length > 0)
+        return alert(
+          "Cor (" +
+            cor.value +
+            ") já adicionada, escolha outra cor e tente novamente"
+        );
+      arrayCor.push({ cor: cor.value });
+      var novoArray = arrayCor.map((item, index) => {
+        return (
+          "<li style='background-color: " +
+          item.cor +
+          "; color: #fff; list-style: none; border: solid; border-width: 1px; margin-top: 10px; min-height: 50px; padding: 5px; flex-grow: 1; display: flex; justify-content: center; align-items: center; min-width: 100px; text-transform: uppercase; text-align: center;'>Item " +
+          parseInt(index + 1) +
+          " - tipo: " +
+          tipo.value +
+          " - descrição: " +
+          nome.value +
+          " - estoque: " +
+          estoque.value +
+          "</li>"
+        );
+      });
+      wr.innerHTML = novoArray.join("");
+    }
+  </script>
+  <body>
+    <div class="container">
+      <label for="nome" class="label-input">
+        <span>Nome do produto</span>
+        <input type="text" name="nome" id="nome" />
+      </label>
+      <label for="estoque" class="label-input">
+        <span>Estoque</span>
+        <input type="number" name="estoque" id="estoque" />
+      </label>
+      <label for="tipo" class="label-input">
+        <select id="tipo">
+          <option value="Camiseta">Camiseta</option>
+          <option value="Bermuda">Bermuda</option>
+          <option value="Jaqueta">Jaqueta</option>
+        </select>
+      </label>
+      <label class="cor" for="cor">
+        <span>variação de cor</span>
+        <input type="color" style="display: none" name="cor" id="cor" />
+        <button onclick="nameS()" class="btn-add-cor">adicionar</button>
+      </label>
+      <ul
+        class="conteudo-cores"
+        style="flex-wrap: wrap; width: 100%;"
+      ></ul>
+    </div>
+  </body>
+</html>
