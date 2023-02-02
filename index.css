@@ -25,6 +25,8 @@ h2 {
     border-radius: 5px;
     color: #174c4f;
     border: solid 1px #ccc;
+    text-transform: uppercase;
+    font-weight: bold;
 }
 
 .label-input {
