@@ -149,6 +149,9 @@ tr {
 tbody tr:nth-child(even) {
     background-color: #e8f0fe;
 }
+tbody tr{
+    background-color: #fff;
+}
 
 tbody {
     border: solid 1px #ccc;
