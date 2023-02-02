@@ -23,7 +23,12 @@
       if (tipo.value === "") return alert("Preencha o tipo do produto");
 
       cor = document.querySelector("#cor");
-      var existeCor = arrayCor.filter((item) => item.cor === cor.value && item.nome === nome.value && item.tipo === tipo.value);
+      var existeCor = arrayCor.filter(
+        (item) =>
+          item.cor === cor.value &&
+          item.nome === nome.value &&
+          item.tipo === tipo.value
+      );
       if (existeCor.length > 0)
         return alert(
           "Cor (" +
@@ -35,6 +40,7 @@
         nome: nome.value,
         estoque: estoque.value,
         tipo: tipo.value,
+        id: new Date().getTime(),
       });
       var novoArray = arrayCor.map((item, index) => {
         return (
@@ -53,6 +59,11 @@
           "; color: #fff;'>" +
           item.cor +
           "</td>" +
+          "<td>" +
+          "<button onclick='handleDelete(" +
+          item.id +
+          ")' class='btn-delete'>X</button>" +
+          "</td>" +
           "</tr>"
         );
       });
@@ -61,6 +72,42 @@
 
     const handleSalvar = () => {
       console.log(arrayCor);
+    };
+
+    // gerar id
+    function generateId() {
+      return Math.random().toString(36).substr(2, 9);
+    }
+
+    const handleDelete = (id) => {
+      arrayCor = arrayCor.filter((item) => item.id !== id);
+      var wr = document.querySelector(".conteudo-cores");
+      var novoArray = arrayCor.map((item, index) => {
+        return (
+          "<tr>" +
+          "<td>" +
+          item.nome +
+          "</td>" +
+          "<td>" +
+          item.estoque +
+          "</td>" +
+          "<td>" +
+          item.tipo +
+          "</td>" +
+          "<td style='background-color:" +
+          item.cor +
+          "; color: #fff;'>" +
+          item.cor +
+          "</td>" +
+          "<td>" +
+          "<button onclick='handleDelete(" +
+          item.id +
+          ")' class='btn-delete'>X</button>" +
+          "</td>" +
+          "</tr>"
+        );
+      });
+      wr.innerHTML = novoArray.join("");
     };
   </script>
   <body>
@@ -94,6 +141,7 @@
               <th>Estoque</th>
               <th>Tipo</th>
               <th>Cor</th>
+              <th>####</th>
             </tr>
           </thead>
           <tbody class="conteudo-cores"></tbody>
