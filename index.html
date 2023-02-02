@@ -33,9 +33,9 @@
       arrayCor.push({ cor: cor.value });
       var novoArray = arrayCor.map((item, index) => {
         return (
-          "<li style='background-color: " +
+          "<li style=' border: solid; border-width: 5px; border-color: " +
           item.cor +
-          "; color: #fff; list-style: none; border: solid; border-width: 1px; margin-top: 10px; min-height: 50px; padding: 5px; flex-grow: 1; display: flex; justify-content: center; align-items: center; min-width: 100px; text-transform: uppercase; text-align: center;'>Item " +
+          "; border-radius: 5px; color: #174c4f; list-style: none; margin-top: 10px; min-height: 50px; padding: 5px; flex-grow: 1; display: flex; justify-content: center; align-items: center; min-width: 100px; text-transform: uppercase; text-align: center;'>Item " +
           parseInt(index + 1) +
           " - tipo: " +
           tipo.value +
@@ -71,10 +71,8 @@
         <input type="color" style="display: none" name="cor" id="cor" />
         <button onclick="nameS()" class="btn-add-cor">adicionar</button>
       </label>
-      <ul
-        class="conteudo-cores"
-        style="flex-wrap: wrap; width: 100%;"
-      ></ul>
+      <ul class="conteudo-cores" style="flex-wrap: wrap; width: 100%"></ul>
+      <button class="salvar">salvar</button>
     </div>
   </body>
 </html>
