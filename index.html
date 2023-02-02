@@ -9,9 +9,9 @@
   </head>
   <script>
     var cor = "";
-    var arrayCor = [];
+    var arrayItem = [];
 
-    function nameS(e) {
+    function handleItem() {
       var wr = document.querySelector(".conteudo-cores");
       var nome = document.querySelector("#nome");
       if (nome.value === "") return alert("Preencha o nome do produto");
@@ -23,7 +23,7 @@
       if (tipo.value === "") return alert("Preencha o tipo do produto");
 
       cor = document.querySelector("#cor");
-      var existeCor = arrayCor.filter(
+      var existeCor = arrayItem.filter(
         (item) =>
           item.cor === cor.value &&
           item.nome === nome.value &&
@@ -35,14 +35,14 @@
             cor.value +
             ") já adicionada, escolha outra cor e tente novamente"
         );
-      arrayCor.push({
+      arrayItem.push({
         cor: cor.value,
         nome: nome.value,
         estoque: estoque.value,
         tipo: tipo.value,
         id: new Date().getTime(),
       });
-      var novoArray = arrayCor.map((item, index) => {
+      var novoArray = arrayItem.map((item, index) => {
         return (
           "<tr>" +
           "<td>" +
@@ -68,10 +68,14 @@
         );
       });
       wr.innerHTML = novoArray.join("");
+      nome.value = "";
+      estoque.value = "";
+      tipo.value = "";
+      cor.value = "";
     }
 
     const handleSalvar = () => {
-      console.log(arrayCor);
+      console.log(arrayItem);
     };
 
     // gerar id
@@ -80,9 +84,9 @@
     }
 
     const handleDelete = (id) => {
-      arrayCor = arrayCor.filter((item) => item.id !== id);
+      arrayItem = arrayItem.filter((item) => item.id !== id);
       var wr = document.querySelector(".conteudo-cores");
-      var novoArray = arrayCor.map((item, index) => {
+      var novoArray = arrayItem.map((item, index) => {
         return (
           "<tr>" +
           "<td>" +
@@ -132,7 +136,7 @@
         <label class="cor" for="cor">
           <span>variação de cor</span>
           <input type="color" style="display: none" name="cor" id="cor" />
-          <button onclick="nameS()" class="btn-add-cor">adicionar</button>
+          <button onclick="handleItem()" class="btn-add-cor">adicionar</button>
         </label>
         <table>
           <thead>
