@@ -90,6 +90,9 @@
     }
 
     const handleSalvar = () => {
+      if (arrayItem.length === 0) {
+        return alert("Nenhum item foi adicionado");
+      }
       $.ajax({
         url: "recebe.php",
         type: "POST",
@@ -104,11 +107,6 @@
         },
       });
     };
-
-    // gerar id
-    function generateId() {
-      return Math.random().toString(36).substr(2, 9);
-    }
 
     const handleDelete = (id) => {
       arrayItem = arrayItem.filter((item) => item.id !== id);
